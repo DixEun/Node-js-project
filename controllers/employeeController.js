@@ -31,7 +31,7 @@ function insertRecord(req, res) {
     employee.save ((err,doc) => {
         if(!err)
     
-        console.log('success');
+        console.log('doc');
 
         else{
             console.log('error:+err');
