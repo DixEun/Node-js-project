@@ -6,3 +6,4 @@ mongoose.connect('mongodb://localhost:27017/sample',{ useNewUrlParser: true },(e
     else {console.log('Error in db connection')}
 });
 require('./employee.model');
+require('./task.model');

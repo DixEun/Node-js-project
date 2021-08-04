@@ -9,6 +9,12 @@ var employeeSchema= new mongoose.Schema({
     company:{
         type: String
     },
+    email:{
+        type:String
+    },
+    password:{
+        type:String
+    }
     
     
 });

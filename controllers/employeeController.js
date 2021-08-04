@@ -11,14 +11,11 @@ router.use(express.json({
 })) 
 
 router.use(cors());
-router.get('/', (req,res)=> {
-    console.log("jas");
-    res.send('Employee');
-});
+
 
 router.post('/submit',async (req, res)=>{
     console.log(req.body);
-    
+    console.log("success");
     var employee= new Employee();
     employee.firstName= req.body.firstName;
     employee.lastName= req.body.lastName;
