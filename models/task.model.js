@@ -5,7 +5,7 @@ const mongoose= require('mongoose');
      type : String
       },
  date:{
-     type: Date
+     type: String
       },
   reminder:{
       type: Boolean

@@ -3,8 +3,7 @@ const cors= require('cors');
 const router = express();
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
-
-
+const Task = mongoose.model('Task');
 
 router.use(express.json({
     type: "*/*"
@@ -76,6 +75,24 @@ router.post('/login', async (req, res) => {
         })
         }
         }); 
+        router.post('/addtask', async (req,res) => {
+            console.log("sucess");
+                var task= new Task();
+                task.text= req.body.text;
+                task.date= req.body.date;
+                task.reminder= req.body.reminder;
+            
+               task.save ((err,doc) => {
+                    if(!err){
+                         res.status(200).send(doc);
+                    }
+                    else{
+                        res.status(500).send(err);
+                        console.log('error:'+err);
+                    }
+            
+               });
+            });
 
    
     
