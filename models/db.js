@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-mongoose.connect('mongodb://localhost:27017/dixon',{ useNewUrlParser: true },(err) =>{
+mongoose.connect('mongodb://localhost:27017/sample',{ useNewUrlParser: true },(err) =>{
     if (!err)
     {console.log('Mongo connected')}
 
