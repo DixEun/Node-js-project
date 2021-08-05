@@ -116,9 +116,24 @@ router.post('/submit',async (req, res)=>{
                     console.log(err);
                     });
                 });          
-
-router.get('/list', (req,res)=> {
-    res.json('from list');
+         
+         
+         router.put('/changetask/:id', async (req,res)=>{
+            var id = req.params.id;
+            console.log(id);
+           const{reminder} = req.body;
+            
+            await Task.updateOne({"_id":id},{reminder:reminder})
+             .then((ans) => {
+            res.status(200).send("changed");
+               }).then((err) => {
+            console.log(err);
+            });
+        });
+ 
+       
+        router.get('/list', (req,res)=> {
+          res.json('from list');
 });
 
 module.exports = router;
