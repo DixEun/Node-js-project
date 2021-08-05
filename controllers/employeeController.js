@@ -5,6 +5,9 @@ const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
 const Task = mongoose.model('Task');
 
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
 router.use(express.json({
     type: "*/*"
 })) 
@@ -93,11 +96,19 @@ router.post('/login', async (req, res) => {
             
                });
             });
-
-   
-    
+            router.get('/tasks', async (req ,res) => {
+                
+                const data= await Task.find().lean()
+                if(data) {
+                    res.status(200).json(data);
+                 }
+                    
+                });
+            
+            
 
 router.get('/list', (req,res)=> {
     res.json('from list');
 });
+
 module.exports = router;
