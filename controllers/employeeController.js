@@ -43,13 +43,12 @@ router.post('/submit',async (req, res)=>{
    
 });
 
-router.post('/login', async (req, res) => {
+  router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     console.log(req.body);
     const user = await Employee.findOne({email}).lean()
 
-    console.log(user);
 
     
         if (!user) {
@@ -79,7 +78,6 @@ router.post('/login', async (req, res) => {
         }
         }); 
         router.post('/addtask', async (req,res) => {
-            console.log("sucess");
                 var task= new Task();
                 task.text= req.body.text;
                 task.date= req.body.date;
@@ -99,13 +97,25 @@ router.post('/login', async (req, res) => {
             router.get('/tasks', async (req ,res) => {
                 
                 const data= await Task.find().lean()
-                if(data) {
+                if(data.length!=0) {
                     res.status(200).json(data);
+                    
+                 }else{
+                    res.status(500).send("no data");
                  }
                     
                 });
             
-            
+            router.delete('/deletetask/:id' , async (req,res) =>{
+                 var id = req.params.id;
+                 console.log(id);
+                 var task=new Task();
+                 Task.deleteOne({"_id": id}).then((ans) => {
+                 res.status(200).send("deleted");
+                  }).then((err) => {
+                    console.log(err);
+                    });
+                });          
 
 router.get('/list', (req,res)=> {
     res.json('from list');
