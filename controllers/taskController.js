@@ -34,8 +34,8 @@ exports.addtask= async (req,res) => {
 }
 
 exports.list= async(req,res)=> {
-    var userId = req.params.userIdd;
-    const task = await Task.findById(userId).lean();
+    var userId = req.params.userId;
+    const task = await Task.find({"userId": userId}).lean();
     if(task){
         res.status(200).send(task)
     }
